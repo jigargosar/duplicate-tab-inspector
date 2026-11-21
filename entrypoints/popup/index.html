@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Duplicate Tab Inspector</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <h1>Duplicate Tab Inspector</h1>
+    <header>
+        <div class="title-row">
+            <h1>Duplicate Tabs</h1>
+            <span id="summary" class="badge">0 duplicates</span>
+        </div>
+        <div class="controls">
+            <label class="pill"><input type="checkbox" id="level-domain" checked disabled> Domain</label>
+            <label class="pill"><input type="checkbox" id="level-path" checked> Path</label>
+            <label class="pill"><input type="checkbox" id="level-query" checked> Query</label>
+            <label class="pill"><input type="checkbox" id="level-hash"> Hash</label>
+        </div>
+        <div class="scope-row">
+            <label class="checkbox-label">
+                <input type="checkbox" id="all-windows" checked> All windows
+            </label>
+            <button id="close-all-btn" class="danger-btn" disabled>Close Extra Copies</button>
+        </div>
+    </header>
+    <main id="groups-container"></main>
     <script type="module" src="./main.ts"></script>
 </body>
 </html>
