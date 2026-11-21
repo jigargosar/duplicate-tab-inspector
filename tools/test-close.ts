@@ -2,12 +2,18 @@ import { createServer } from 'node:http'
 import type { AddressInfo } from 'node:net'
 import puppeteer, { type Page } from 'puppeteer-core'
 
-const server = createServer((req, res) => {
-    res.setHeader('content-type', 'text/html')
-    res.end(`<title>page ${req.url}</title><h1>${req.url}</h1>`)
-})
-await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve))
-const base = `http://127.0.0.1:${(server.address() as AddressInfo).port}`
+async function startServer() {
+    const server = createServer((req, res) => {
+        res.setHeader('content-type', 'text/html')
+        res.end(`<title>page ${req.url}</title><h1>${req.url}</h1>`)
+    })
+    await new Promise<void>((resolve) => server.listen(0, '127.0.0.1', resolve))
+    return { server, base: `http://127.0.0.1:${(server.address() as AddressInfo).port}` }
+}
+
+// Same host, different port: must not count as a duplicate of base.
+const { server, base } = await startServer()
+const { server: otherServer, base: otherBase } = await startServer()
 
 const browser = await puppeteer.connect({ browserURL: 'http://127.0.0.1:9222', defaultViewport: null })
 
@@ -24,11 +30,12 @@ for (const page of await browser.pages()) {
     }
 }
 
-const openPaths =['/a', '/a', '/a', '/b', '/b', '/c']
+const openUrls = ['/a', '/a', '/a', '/b', '/b', '/c'].map((path) => base + path)
+openUrls.push(otherBase + '/a')
 const testPages: Page[] = []
-for (const path of openPaths) {
+for (const url of openUrls) {
     const page = await browser.newPage()
-    await page.goto(base + path)
+    await page.goto(url)
     testPages.push(page)
 }
 
@@ -46,10 +53,10 @@ async function remainingPaths() {
         const tabs = await (globalThis as any).chrome.tabs.query({})
         return tabs.map((t: { url: string }) => t.url) as string[]
     })
-    return urls
-        .filter((url) => url.startsWith(base))
-        .map((url) => new URL(url).pathname)
-        .sort()
+    return [
+        ...urls.filter((url) => url.startsWith(base + '/')).map((url) => new URL(url).pathname).sort(),
+        ...urls.filter((url) => url.startsWith(otherBase + '/')).map((url) => 'other-port' + new URL(url).pathname),
+    ]
 }
 
 async function clickAndWait(selectorText: string) {
@@ -70,14 +77,14 @@ function check(step: string, expected: string, actual: string) {
 }
 
 check('summary at start', '3 extra across 2 groups', String(await summary()))
-check('tabs at start', '/a /a /a /b /b /c', (await remainingPaths()).join(' '))
+check('tabs at start', '/a /a /a /b /b /c other-port/a', (await remainingPaths()).join(' '))
 
 await clickAndWait('Keep 1, Close 2')
-check('after Keep 1 on /a', '/a /b /b /c', (await remainingPaths()).join(' '))
+check('after Keep 1 on /a', '/a /b /b /c other-port/a', (await remainingPaths()).join(' '))
 check('summary after Keep 1', '1 extra across 1 group', String(await summary()))
 
 await clickAndWait('Close Extra Copies')
-check('after Close Extra Copies', '/a /b /c', (await remainingPaths()).join(' '))
+check('after Close Extra Copies', '/a /b /c other-port/a', (await remainingPaths()).join(' '))
 check('summary at end', '0 extra across 0 groups', String(await summary()))
 
 for (const page of testPages) {
@@ -88,5 +95,6 @@ for (const page of testPages) {
 await popup.close()
 await browser.disconnect()
 server.close()
+otherServer.close()
 
 process.exit(results.some((r) => r.expected !== r.actual) ? 1 : 0)

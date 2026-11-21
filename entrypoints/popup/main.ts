@@ -36,7 +36,7 @@ function normalizeKey(rawUrl: string | undefined): string | null {
     if (u.protocol !== 'http:' && u.protocol !== 'https:') {
         return null
     }
-    let key = u.hostname.toLowerCase()
+    let key = u.host.toLowerCase()
     if (state.path) {
         key += u.pathname.replace(/\/$/, '') || '/'
     }
