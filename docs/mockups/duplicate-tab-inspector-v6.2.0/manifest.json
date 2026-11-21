@@ -1,0 +1,37 @@
+{
+  "manifest_version": 3,
+  "name": "Duplicate Tab Inspector",
+  "version": "6.2.0",
+  "description": "Inspect, preview, and selectively close duplicate tabs across Domain, Path, Query, and Hash levels.",
+  "permissions": [
+    "tabs",
+    "scripting"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "action": {
+    "default_title": "Duplicate Tab Inspector",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+D"
+      },
+      "description": "Open Duplicate Tab Inspector"
+    }
+  }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplicate Tab Inspector v2.0.0</title>
+    <link rel="stylesheet" href="inspector.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <h1>Duplicate Tab Inspector</h1>
+                <span class="version-badge">v2.0.0</span>
+                <span id="summary-stats" class="stats-pill">Scanning...</span>
+            </div>
+
+            <div class="controls-bar">
+                <div class="control-group" role="group" aria-label="URL Matching Level">
+                    <span class="control-label">Match Level:</span>
+                    <button type="button" class="pill active" data-level="domain" disabled>Domain</button>
+                    <button type="button" class="pill active" data-level="path">Path</button>
+                    <button type="button" class="pill active" data-level="query">Query</button>
+                    <button type="button" class="pill" data-level="hash">Hash</button>
+                </div>
+
+                <div class="control-group" role="group" aria-label="Scope">
+                    <label class="toggle-label">
+                        <input type="checkbox" id="all-windows" checked>
+                        <span>All Windows</span>
+                    </label>
+                    <button type="button" id="refresh-btn" class="btn btn-secondary">Refresh</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main id="content" class="main-container"></main>
+
+    <template id="group-template">
+        <section class="dup-group">
+            <div class="group-header">
+                <div class="group-meta">
+                    <span class="group-count"></span>
+                    <span class="group-key" title=""></span>
+                </div>
+                <div class="group-actions">
+                    <button type="button" class="btn btn-danger keep-one-btn">Keep First, Close Extras</button>
+                </div>
+            </div>
+            <div class="cards-grid"></div>
+        </section>
+    </template>
+
+    <template id="card-template">
+        <article class="tab-card">
+            <div class="card-preview">
+                <div class="preview-header">
+                    <img class="favicon" alt="" width="16" height="16">
+                    <span class="window-badge"></span>
+                    <span class="status-badge"></span>
+                </div>
+                <div class="preview-domain"></div>
+                <div class="preview-title"></div>
+            </div>
+            <div class="card-body">
+                <div class="full-url"></div>
+                <div class="card-actions">
+                    <button type="button" class="btn btn-secondary focus-btn">Switch To Tab</button>
+                    <button type="button" class="btn btn-danger close-btn">Close</button>
+                </div>
+            </div>
+        </article>
+    </template>
+
+    <script src="inspector.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duplicate Tab Inspector</title>
+  <link rel="icon" type="image/png" href="icons/icon-48.png">
+  <link rel="stylesheet" href="inspector.css">
+</head>
+<body>
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="icons/icon-48.png" alt="" class="brand-icon">
+        <div class="brand-text">
+          <div class="title-row">
+            <h1>Duplicate Tab Inspector</h1>
+            <span id="versionBadge" class="version-badge">v6.4.0</span>
+          </div>
+          <p id="summaryText" class="summary-text">Scanning open tabs...</p>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="segmented" role="group" aria-label="URL match level">
+          <button type="button" class="seg-btn" data-mode="domain">Domain</button>
+          <button type="button" class="seg-btn" data-mode="path">Path</button>
+          <button type="button" class="seg-btn" data-mode="no-hash">No Hash</button>
+          <button type="button" class="seg-btn active" data-mode="exact">Exact</button>
+        </div>
+        <button type="button" id="captureBtn" class="capture-btn">Capture Previews</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-wrap">
+    <div id="groupsContainer" class="groups-list"></div>
+    <div id="emptyState" class="empty-state hidden">
+      <p class="empty-title">No duplicate tabs found</p>
+      <p id="emptySub" class="empty-sub">Switch match level above to inspect broader URL groups.</p>
+    </div>
+  </main>
+
+  <script src="inspector.js"></script>
+</body>
+</html>

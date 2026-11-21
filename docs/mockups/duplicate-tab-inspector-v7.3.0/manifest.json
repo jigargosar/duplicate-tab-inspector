@@ -1,0 +1,38 @@
+{
+    "manifest_version": 3,
+    "name": "Duplicate Tab Inspector",
+    "version": "7.3.0",
+    "description": "Inspect, preview, and selectively close duplicate tabs across windows with multi-level URL matching.",
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+    "host_permissions": [
+        "<all_urls>"
+    ],
+    "icons": {
+        "16": "icons/icon-16.png",
+        "48": "icons/icon-48.png",
+        "128": "icons/icon-128.png"
+    },
+    "action": {
+        "default_title": "Duplicate Tab Inspector",
+        "default_icon": {
+            "16": "icons/icon-16.png",
+            "48": "icons/icon-48.png",
+            "128": "icons/icon-128.png"
+        }
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Alt+Shift+D",
+                "mac": "Command+Shift+D"
+            },
+            "description": "Open Duplicate Tab Inspector"
+        }
+    }
+}

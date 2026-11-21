@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Duplicate Tab Inspector",
+  "version": "5.0.0",
+  "description": "Zero-load duplicate tab inspector with multi-level URL matching, hover details, and on-demand snapshots.",
+  "permissions": [
+    "tabs",
+    "activeTab"
+  ],
+  "icons": {
+    "16": "icons/icon-16.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "action": {
+    "default_title": "Inspect Duplicate Tabs",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "48": "icons/icon-48.png",
+      "128": "icons/icon-128.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+D",
+        "mac": "Command+Shift+D"
+      },
+      "description": "Open Duplicate Tab Inspector"
+    }
+  }
+}

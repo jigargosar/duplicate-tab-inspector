@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "Duplicate Tab Inspector",
+  "version": "3.0.0",
+  "description": "Visual dark-mode inspector with live tab snapshots to review and close duplicate tabs.",
+  "permissions": [
+    "tabs",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_title": "Open Duplicate Tab Inspector"
+  },
+  "commands": {
+    "_execute_action": {
+      "suggested_key": {
+        "default": "Alt+Shift+D",
+        "mac": "Command+Shift+D"
+      },
+      "description": "Open Duplicate Tab Inspector"
+    }
+  }
+}

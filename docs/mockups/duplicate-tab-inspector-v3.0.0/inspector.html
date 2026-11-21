@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Duplicate Tab Inspector v3.0.0</title>
+  <link rel="stylesheet" href="inspector.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <h1>Duplicate Tab Inspector</h1>
+        <span class="version-pill">v3.0.0</span>
+        <span id="summary-stats" class="stats-pill">Scanning...</span>
+      </div>
+
+      <div class="controls">
+        <div class="control-group" role="group" aria-label="URL Matching Level">
+          <span class="control-label">Match</span>
+          <button type="button" class="pill active" data-level="domain" disabled title="Domain is always included">Domain</button>
+          <button type="button" class="pill active" data-level="path">Path</button>
+          <button type="button" class="pill active" data-level="query">Query</button>
+          <button type="button" class="pill" data-level="hash">Hash</button>
+        </div>
+
+        <div class="control-group">
+          <button type="button" id="capture-all-btn" class="btn-secondary" title="Briefly focus duplicate tabs to capture live snapshots">Capture Previews</button>
+          <button type="button" id="refresh-btn" class="btn-secondary" title="Re-scan open tabs">Refresh</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="content" class="container">
+    <div id="groups-container" class="groups-list"></div>
+    <div id="empty-state" class="empty-state hidden">
+      <h2>No duplicate tabs found</h2>
+      <p>Adjust the URL matching pills above (for example, turn off <strong>Query</strong> or <strong>Path</strong>) to inspect broader matches.</p>
+    </div>
+  </main>
+
+  <script src="inspector.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duplicate Tab Inspector</title>
+    <link rel="icon" type="image/png" href="icons/icon-48.png">
+    <link rel="stylesheet" href="inspector.css">
+</head>
+<body>
+    <header class="topbar">
+        <div class="brand">
+            <img src="icons/icon-48.png" alt="" class="brand-icon">
+            <div class="brand-text">
+                <h1>Duplicate Tab Inspector</h1>
+                <p id="summary" class="summary">Scanning open tabs...</p>
+            </div>
+        </div>
+
+        <div class="controls">
+            <div class="segmented" role="group" aria-label="URL match level">
+                <button type="button" class="seg-btn" data-mode="domain">Domain</button>
+                <button type="button" class="seg-btn" data-mode="path">Path</button>
+                <button type="button" class="seg-btn" data-mode="no-hash">No Hash</button>
+                <button type="button" class="seg-btn is-active" data-mode="exact">Exact</button>
+            </div>
+            <button type="button" id="capture-btn" class="primary-btn">Capture Previews</button>
+        </div>
+    </header>
+
+    <main id="groups-container" class="groups-container"></main>
+
+    <script src="inspector.js"></script>
+</body>
+</html>

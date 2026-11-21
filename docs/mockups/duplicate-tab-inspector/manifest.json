@@ -1,0 +1,21 @@
+{
+    "manifest_version": 3,
+    "name": "Duplicate Tab Inspector",
+    "version": "1.0.0",
+    "description": "Preview, group, and selectively close duplicate tabs across domain, path, query, and hash levels.",
+    "permissions": [
+        "tabs"
+    ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "Inspect Duplicate Tabs"
+    },
+    "commands": {
+        "_execute_action": {
+            "suggested_key": {
+                "default": "Alt+Shift+D"
+            },
+            "description": "Open Duplicate Tab Inspector"
+        }
+    }
+}

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Duplicate Tab Inspector</title>
+    <link rel="icon" type="image/png" href="icons/icon-48.png" />
+    <link rel="stylesheet" href="inspector.css" />
+</head>
+<body>
+    <header class="top-bar">
+        <div class="top-bar-inner">
+            <div class="brand">
+                <img src="icons/icon-48.png" alt="" class="brand-icon" />
+                <div class="brand-text">
+                    <div class="brand-title-row">
+                        <h1>Duplicate Tab Inspector</h1>
+                        <span id="versionBadge" class="version-badge">v7.3.0</span>
+                    </div>
+                    <p id="summaryText" class="summary-text">Scanning open tabs...</p>
+                </div>
+            </div>
+
+            <div class="controls">
+                <div class="filter-bar" role="group" aria-label="URL matching level">
+                    <button type="button" class="filter-btn" data-level="domain">Domain</button>
+                    <button type="button" class="filter-btn" data-level="path">Path</button>
+                    <button type="button" class="filter-btn" data-level="no-hash">No Hash</button>
+                    <button type="button" class="filter-btn active" data-level="exact">Exact</button>
+                </div>
+
+                <button type="button" id="captureBtn" class="capture-btn">
+                    Capture Previews
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="groupsContainer" class="groups-container"></main>
+
+    <script src="inspector.js"></script>
+</body>
+</html>
