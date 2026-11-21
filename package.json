@@ -13,8 +13,10 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "@puppeteer/browsers": "^3.2.7",
     "@types/node": "^26.6.6",
     "claude-cli-browser-terminal": "https://github.com/jigargosar/claude-cli-browser-terminal/raw/main/published-versions/claude-cli-browser-terminal-0.1.17.tgz",
+    "puppeteer-core": "^25.18.1",
     "typescript": "^7.0.2",
     "wxt": "^0.21.5"
   }
